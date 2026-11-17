@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#06171C">
+<meta name="description" content="СИГНАЛ — плеер по ссылке: настоящие файлы, HLS и DASH, официальные плееры площадок, избранное без памяти и офлайн-загрузки.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="СИГНАЛ">
+<title>СИГНАЛ — видео по ссылке</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2306171C'/%3E%3Cpath d='M5 16h3l2-6 3 12 2.5-8 2 4h6.5' stroke='%2300E5C7' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%2306171C'/%3E%3Cpath d='M28 90h17l11-34 17 68 14-45 11 22h37' stroke='%2300E5C7' stroke-width='13' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&amp;family=Golos+Text:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00E5C7"/><stop offset=".55" stop-color="#3B9DFF"/><stop offset="1" stop-color="#FF3D8B"/></linearGradient>
+</defs>
+<symbol id="i-logo" viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="9" fill="url(#lg)"/><path d="M6 16h3l2-6 3 12 2.5-8 2 4h5.5" stroke="#04231F" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></symbol>
+<symbol id="i-heartF" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6M14 11v6"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+<symbol id="i-sort" viewBox="0 0 24 24"><path d="M7 4v12M4 13l3 3 3-3M17 20V8M14 11l3-3 3 3"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a5 5 0 007.1 0l2.4-2.4a5 5 0 00-7.1-7.1L11 5.9M14 10a5 5 0 00-7.1 0l-2.4 2.4a5 5 0 007.1 7.1L13 18.1"/></symbol>
+<symbol id="i-clip" viewBox="0 0 24 24"><path d="M21 12l-8.5 8.5a5.5 5.5 0 01-7.8-7.8L13 4.4a3.7 3.7 0 015.2 5.2L10 17.8a1.8 1.8 0 01-2.6-2.6L15 7.6"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-chevD" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-chevR" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4M5 12v8h14v-8"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 013 3L8 19l-4 1z"/></symbol>
+<symbol id="i-note" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7"/></symbol>
+<symbol id="i-grip" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+<symbol id="i-f10" viewBox="0 0 24 24"><path d="M20 12a8 8 0 11-2.3-5.7M20 4v5h-5"/><text x="12" y="15.5" font-size="7.5" text-anchor="middle" fill="currentColor" stroke="none" font-weight="700" font-family="Golos Text,sans-serif">10</text></symbol>
+<symbol id="i-b10" viewBox="0 0 24 24"><path d="M4 12a8 8 0 102.3-5.7M4 4v5h5"/><text x="12" y="15.5" font-size="7.5" text-anchor="middle" fill="currentColor" stroke="none" font-weight="700" font-family="Golos Text,sans-serif">10</text></symbol>
+<symbol id="i-pip" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM12 12h7v5h-7z"/></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+<symbol id="i-speed" viewBox="0 0 24 24"><path d="M5 19a9 9 0 1114 0M12 13l4-4"/><circle cx="12" cy="13" r="1.6" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2.5 9a15 15 0 0119 0M5.5 12.5a10 10 0 0113 0M8.5 16a5 5 0 017 0"/><circle cx="12" cy="19" r="1.4" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-wifioff" viewBox="0 0 24 24"><path d="M2.5 9a15 15 0 0119 0M8.5 16a5 5 0 017 0M3 3l18 18"/></symbol>
+<symbol id="i-spk" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4zM16.5 8.5a5 5 0 010 7M19 6a9 9 0 010 12"/></symbol>
+<symbol id="i-spkx" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4zM17 9.5l5 5M22 9.5l-5 5"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6h-6v6H4z"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></symbol>
+<symbol id="i-film" viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 9h16M4 15h16M8 5v14M16 5v14"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></symbol>
+<symbol id="i-hdd" viewBox="0 0 24 24"><path d="M4 6h16v5H4zM4 13h16v5H4z"/><circle cx="7" cy="8.5" r="1" fill="currentColor" stroke="none"/><circle cx="7" cy="15.5" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="1.1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 11-2.3-5.7M20 4v5h-5"/></symbol>
+<symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 14v6H5V6h6"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2zM12 10v4"/><circle cx="12" cy="17.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-checkSq" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12l3 3 5-6"/></symbol>
+<symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></symbol>
+<symbol id="i-cam" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13" r="4"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></symbol>
+<symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 000-18z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 01-12 0c0-3 2-6 6-11z"/></symbol>
+<symbol id="i-crop" viewBox="0 0 24 24"><path d="M6 2v16h16M2 6h16v16"/></symbol>
+<symbol id="i-cc" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 10a2.5 2.5 0 100 4M17 10a2.5 2.5 0 100 4"/></symbol>
+<symbol id="i-loop" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4M3 11V9a4 4 0 014-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 01-4 4H3"/></symbol>
+<symbol id="i-ab" viewBox="0 0 24 24"><path d="M4 6v12M20 6v12M8 12h8"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 12h3l2-7 3 14 2.5-9 2 5 2-3h5.5"/></symbol>
+<symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5zM8 3v6h8V3M8 14h8v7H8z"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5h10"/></symbol>
+<symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l7-4"/></symbol>
+</svg>
+
+<div class="bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="mesh"></span></div>
+
+
+<div class="shell">
+  <aside class="rail">
+    <div class="rail-brand"><svg class="ic"><use href="#i-logo"/></svg><div><b>СИГНАЛ</b><span>видео по ссылке</span></div></div>
+    <nav class="rail-nav">
+      <button class="rnav on" data-nav="add"><svg class="ic"><use href="#i-home"/></svg>Ловить</button>
+      <button class="rnav" data-nav="lib"><svg class="ic"><use href="#i-grid"/></svg>Полка<span class="rn" id="railLib">0</span></button>
+      <button class="rnav" data-nav="off"><svg class="ic"><use href="#i-dl"/></svg>Офлайн<span class="rn hot" id="railDl" hidden>0</span></button>
+      <button class="rnav" data-nav="set"><svg class="ic"><use href="#i-gear"/></svg>Настройки</button>
+    </nav>
+    <div class="rail-foot">
+      <div class="rail-scope"><div class="rs-h"><svg class="ic"><use href="#i-wave"/></svg>Сеть<b id="scopeNow">—</b></div><canvas id="scopeBig" width="440" height="150"></canvas><div class="rs-l"><span><i style="background:#00E5C7"></i>поток</span><span><i style="background:#3B9DFF"></i>оценка</span></div></div>
+      <button class="rail-inst" id="btnInstallRail"><svg class="ic"><use href="#i-save"/></svg>Установить приложение</button>
+      <div class="rail-ver">v2.0 · IndexedDB · hls.js · dash.js</div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="obanner" id="obanner"><svg class="ic"><use href="#i-wifioff"/></svg>Нет сети — играет только скачанное</div>
+    <header class="topbar">
+      <div class="tb-brand"><svg class="ic"><use href="#i-logo"/></svg><b>СИГНАЛ</b></div>
+      <h1 id="screenTitle">Ловить</h1>
+      <div class="sp"></div>
+      <button class="netchip eco" id="netChip" title="Режим трафика"><svg class="ic"><use href="#i-wifi"/></svg><span id="netTxt">эконом</span></button>
+      <button class="ib" id="btnMute" aria-label="Звук интерфейса и видео"><svg class="ic"><use id="muteIco" href="#i-spk"/></svg></button>
+    </header>
+
+    <main class="screens">
+      <!-- ================= ADD ================= -->
+      <section class="screen active" id="scr-add">
+        <div class="grid2">
+          <div class="col">
+            <div class="catch">
+              <h2>Поймать по ссылке</h2>
+              <p class="sub">Файл · HLS · DASH · YouTube · Vimeo · RuTube · Dailymotion · OK · TikTok · Twitch</p>
+              <div class="urlbox" id="urlBox">
+                <svg class="ic"><use href="#i-link"/></svg>
+                <input id="urlInput" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="вставь ссылку на видео или страницу" aria-label="Ссылка">
+                <button class="ucl" id="btnClearUrl" aria-label="Очистить"><svg class="ic"><use href="#i-x"/></svg></button>
+                <button class="pbtn" id="btnPaste"><svg class="ic"><use href="#i-clip"/></svg>Вставить</button>
+              </div>
+              <div class="det" id="detect"></div>
+              <div class="catch-btns">
+                <button class="btn btn-cta" id="btnCatch"><svg class="ic"><use href="#i-play"/></svg><span>Открыть в плеере</span></button>
+                <button class="btn btn-gh" id="btnScan" title="Искать видео в HTML страницы"><svg class="ic"><use href="#i-radar"/></svg>Сканировать</button>
+              </div>
+              <button class="linkbtn" id="howBtn"><svg class="ic"><use href="#i-info"/></svg>Что именно работает и почему прокси часто не помогает</button>
+            </div>
+
+            <div id="scanWrap"></div>
+
+            <div class="card manual">
+              <div class="hs" style="margin-top:0"><svg class="ic"><use href="#i-link"/></svg>Прямая ссылка вручную</div>
+              <div class="urlbox">
+                <svg class="ic"><use href="#i-film"/></svg>
+                <input id="manualUrl" type="url" inputmode="url" spellcheck="false" placeholder="https://…/video.mp4 или .m3u8 / .mpd" aria-label="Прямая ссылка">
+                <button class="pbtn" id="btnManual"><svg class="ic"><use href="#i-play"/></svg>Открыть</button>
+              </div>
+              <p class="fineprint">Работает без прокси и без сервера — браузер тянет поток напрямую.</p>
+            </div>
+
+            <div class="ex-label"><svg class="ic"><use href="#i-spark"/></svg>Проверенные живые ссылки — нажми</div>
+            <div class="ex-grid" id="exGrid"></div>
+          </div>
+
+          <div class="col">
+            <div id="contWrap"></div>
+            <div class="hs"><svg class="ic"><use href="#i-wave"/></svg>Твоя сеть<span class="sp"></span><span class="n" id="netKind">—</span></div>
+            <div class="card">
+              <div class="netrow eco" id="netRow">
+                <div class="ni"><svg class="ic"><use href="#i-wifi"/></svg></div>
+                <div class="gr"><b>Экономия трафика</b><p id="netDesc">HLS/DASH не выше 480p</p></div>
+                <label class="sw"><input type="checkbox" id="swEcoHome" checked><i></i></label>
+              </div>
+              <div class="telemetry">
+                <canvas id="scopeSmall" width="600" height="112"></canvas>
+                <div class="tstats"><span>сеть: <b id="tsDown">—</b></span><span>поток: <b id="tsReal">—</b></span><span>передано: <b id="tsBytes">0 МБ</b></span></div>
+              </div>
+            </div>
+            <div id="recWrap"></div>
+            <div class="hs"><svg class="ic"><use href="#i-radar"/></svg>Возможности источников</div>
+            <div class="caps" id="capsList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= LIBRARY ================= -->
+      <section class="screen" id="scr-lib">
+        <div class="lh"><h2>Полка</h2><span class="c" id="libCount">0</span><div class="sp"></div><button class="selb" id="btnSel">Выбрать</button></div>
+        <div class="srow">
+          <div class="sbox"><svg class="ic"><use href="#i-search"/></svg><input id="qInput" type="search" placeholder="Поиск: имя, заметка, сайт…" autocomplete="off"></div>
+          <button class="sortb" id="btnSort" aria-label="Сортировка"><svg class="ic"><use href="#i-sort"/></svg></button>
+        </div>
+        <div class="views" id="viewsRow"></div>
+        <div class="chips" id="filterRow"></div>
+        <div class="vlist" id="list"></div>
+        <div id="libEmpty"></div>
+      </section>
+
+      <!-- ================= OFFLINE ================= -->
+      <section class="screen" id="scr-off">
+        <div class="lh"><h2>Офлайн</h2><div class="sp"></div></div>
+        <div class="card stor">
+          <div class="st"><div class="ni"><svg class="ic"><use href="#i-hdd"/></svg></div><div><b>Память устройства</b><p id="storTxt">—</p></div><div class="sp"></div><button class="btn btn-gh btn-sm" id="btnWipe">Очистить</button></div>
+          <div class="sbar" id="storBar"></div>
+          <div class="sleg" id="storLeg"></div>
+        </div>
+        <div class="hs"><svg class="ic"><use href="#i-dl"/></svg>Качается сейчас<span class="sp"></span><span class="n" id="actCnt"></span></div>
+        <div id="actList" class="dlgrid"></div>
+        <div class="hs"><svg class="ic"><use href="#i-check"/></svg>Лежит на устройстве</div>
+        <div id="doneList" class="dlgrid"></div>
+        <div id="offEmpty"></div>
+      </section>
+
+      <!-- ================= SETTINGS ================= -->
+      <section class="screen" id="scr-set">
+        <div class="lh"><h2>Настройки</h2><div class="sp"></div></div>
+        <div class="grid2">
+          <div class="col">
+            <div class="hs"><svg class="ic"><use href="#i-play"/></svg>Воспроизведение</div>
+            <div class="sg">
+              <div class="sr"><div class="si a"><svg class="ic"><use href="#i-wifi"/></svg></div><div class="sx"><b>Экономия трафика</b><p>ограничивает качество HLS и DASH</p></div><label class="sw"><input type="checkbox" id="swEco"><i></i></label></div>
+              <div class="sr"><div class="si"><svg class="ic"><use href="#i-film"/></svg></div><div class="sx"><b>Потолок качества</b><p>для потоков с несколькими дорожками</p></div><select class="sel" id="setCap"><option value="0">Авто</option><option value="360">≤360p</option><option value="480">≤480p</option><option value="720">≤720p</option><option value="1080">≤1080p</option></select></div>
+              <div class="sr"><div class="si b"><svg class="ic"><use href="#i-refresh"/></svg></div><div class="sx"><b>Следующий ролик</b><p>автопереход через 5 секунд</p></div><label class="sw"><input type="checkbox" id="swNext"><i></i></label></div>
+              <div class="sr"><div class="si"><svg class="ic"><use href="#i-clock"/></svg></div><div class="sx"><b>Помнить позицию</b><p>продолжать с места остановки</p></div><label class="sw"><input type="checkbox" id="swPos"><i></i></label></div>
+              <div class="sr"><div class="si m"><svg class="ic"><use href="#i-spk"/></svg></div><div class="sx"><b>Звуки интерфейса</b><p>клики, готово, ошибки</p></div><label class="sw"><input type="checkbox" id="swSfx"><i></i></label></div>
+            </div>
+
+            <div class="hs"><svg class="ic"><use href="#i-radar"/></svg>CORS-прокси для сканера</div>
+            <div class="sg">
+              <div class="sr col">
+                <div class="top"><div class="si a"><svg class="ic"><use href="#i-radar"/></svg></div><div class="sx"><b>Свой прокси</b><p>подставляется первым в список. Формат: адрес, где {url} — ссылка в кодировке</p></div></div>
+                <input class="ext-input" id="proxyInput" type="url" spellcheck="false" placeholder="https://мой-воркер.dev/?url={url}">
+                <div class="ext-btns"><button class="btn btn-gh btn-sm" id="btnProxyTest"><svg class="ic"><use href="#i-wave"/></svg>Проверить все прокси</button><button class="btn btn-cta btn-sm" id="btnProxySave"><svg class="ic"><use href="#i-check"/></svg>Сохранить</button></div>
+                <div id="proxyResults" class="diag"></div>
+                <p class="fineprint">Публичные прокси лимитированы и часто лежат. Сканер — вспомогательный инструмент; плеер и загрузки от них не зависят.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="hs"><svg class="ic"><use href="#i-server"/></svg>Свой экстрактор<span class="sp"></span><span class="n">VK, Дзен, любые сайты</span></div>
+            <div class="sg">
+              <div class="sr col">
+                <div class="top"><div class="si l"><svg class="ic"><use href="#i-server"/></svg></div><div class="sx"><b>Адрес сервера</b><p>приложение реально ходит на него и играет возвращённый поток</p></div></div>
+                <input class="ext-input" id="extInput" type="url" inputmode="url" spellcheck="false" placeholder="http://192.168.1.50:8787/resolve">
+                <div class="ext-btns"><button class="btn btn-gh btn-sm" id="extTest"><svg class="ic"><use href="#i-wave"/></svg>Проверить</button><button class="btn btn-cta btn-sm" id="extSave"><svg class="ic"><use href="#i-check"/></svg>Сохранить</button></div>
+                <div class="ext-state" id="extState">Не подключён.</div>
+                <button class="linkbtn" id="extCode"><svg class="ic"><use href="#i-copy"/></svg>Готовый код сервера (копировать)</button>
+              </div>
+            </div>
+
+            <div class="hs"><svg class="ic"><use href="#i-hdd"/></svg>Данные и установка</div>
+            <div class="sg">
+              <div class="sr"><div class="si l"><svg class="ic"><use href="#i-hdd"/></svg></div><div class="sx"><b>Скачанные файлы</b><p id="storTxt2">—</p></div><button class="btn btn-gh btn-sm" id="btnFree">Освободить</button></div>
+              <div class="sr"><div class="si b"><svg class="ic"><use href="#i-save"/></svg></div><div class="sx"><b>Установить приложением</b><p>иконка на домашний экран, «поделиться ссылкой» в приложение</p></div><button class="btn btn-gh btn-sm" id="btnInstall">Установить</button></div>
+              <div class="sr"><div class="si r"><svg class="ic"><use href="#i-trash"/></svg></div><div class="sx"><b>Сбросить всё</b><p>полка, виды, настройки и файлы</p></div><button class="btn btn-dg btn-sm" id="btnReset">Сброс</button></div>
+            </div>
+
+            <div class="hs"><svg class="ic"><use href="#i-check"/></svg>Диагностика</div>
+            <div class="diag" id="diagList"></div>
+            <div class="card about"><svg class="ic"><use href="#i-logo"/></svg><b>СИГНАЛ</b><p>v2.0 · без сборки и без обязательного сервера</p><button class="linkbtn" id="aboutBtn" style="margin-top:10px"><svg class="ic"><use href="#i-info"/></svg>Возможности и границы</button></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="bulk" id="bulk">
+      <span class="bc" id="bulkN">0</span>
+      <button class="bb" id="bulkAll" title="Выбрать все"><svg class="ic"><use href="#i-checkSq"/></svg></button><div class="sp"></div>
+      <button class="bb f" id="bulkFav" title="В избранное"><svg class="ic"><use href="#i-heart"/></svg></button>
+      <button class="bb d" id="bulkDl" title="Скачать"><svg class="ic"><use href="#i-dl"/></svg></button>
+      <button class="bb t" id="bulkDel" title="Удалить"><svg class="ic"><use href="#i-trash"/></svg></button>
+      <button class="bb" id="bulkX" title="Готово"><svg class="ic"><use href="#i-x"/></svg></button>
+    </div>
+
+    <nav class="tabbar">
+      <button class="tab on" data-nav="add"><svg class="ic"><use href="#i-home"/></svg>Ловить</button>
+      <button class="tab" data-nav="lib"><svg class="ic"><use href="#i-grid"/></svg>Полка</button>
+      <button class="tab" data-nav="off"><svg class="ic"><use href="#i-dl"/></svg>Офлайн<span class="tb" id="dlBadge" hidden>0</span></button>
+      <button class="tab" data-nav="set"><svg class="ic"><use href="#i-gear"/></svg>Настройки</button>
+    </nav>
+  </div>
+</div>
+
+<!-- ================= PLAYER ================= -->
+<div class="player" id="player" role="dialog" aria-label="Плеер">
+  <div class="p-inner">
+    <div class="p-left">
+      <div class="pbar">
+        <button class="ib" id="pBack" aria-label="Назад"><svg class="ic"><use href="#i-back"/></svg></button>
+        <div class="pt"><b id="pTitle">—</b><div class="meta" id="pMeta"></div></div>
+        <button class="ib" id="pFav" aria-label="Избранное"><svg class="ic"><use id="pFavIco" href="#i-heart"/></svg></button>
+        <button class="ib" id="pOpen" aria-label="Открыть источник"><svg class="ic"><use href="#i-ext"/></svg></button>
+      </div>
+      <div class="pmedia" id="pMedia">
+        <div id="mediaHost"><video id="pv" playsinline preload="metadata"></video></div>
+        <div class="abmark" id="abMark">A—B</div>
+        <div class="pzones" id="pZones">
+          <div class="pz l" id="zL"><div class="sflash" id="fL"><svg class="ic"><use href="#i-b10"/></svg>−10 сек</div></div>
+          <div class="pz c" id="zC"></div>
+          <div class="pz r" id="zR"><div class="sflash" id="fR"><svg class="ic"><use href="#i-f10"/></svg>+10 сек</div></div>
+        </div>
+        <div class="pflash" id="pFlash"><svg class="ic"><use id="pFlashIco" href="#i-play"/></svg></div>
+        <div class="pspin" id="pSpin"><div class="ring"></div><span id="pSpinTxt">Буферизация…</span></div>
+        <div class="perr" id="pErr"><div class="errc"><svg class="ic"><use href="#i-alert"/></svg><b id="errTitle">Не загрузилось</b><p id="errText">—</p><div class="eb"><button class="btn btn-gh btn-sm" id="errOpen"><svg class="ic"><use href="#i-ext"/></svg>Источник</button><button class="btn btn-cta btn-sm" id="errRetry"><svg class="ic"><use href="#i-refresh"/></svg>Ещё раз</button></div></div></div>
+      </div>
+      <div class="ptrans" id="pTrans">
+        <div class="seekrow"><span class="t" id="pCur">0:00</span>
+          <div class="pseek" id="pSeek"><div class="tr"><div class="pbuf" id="pBuf"></div><div class="pplay" id="pPlayed"></div><div class="pdot" id="pDot"></div></div><div class="pbub" id="pBub">0:00</div></div>
+          <span class="t" id="pDur">0:00</span></div>
+        <div class="prow">
+          <button class="ib" id="pB10" aria-label="Назад 10 секунд"><svg class="ic"><use href="#i-b10"/></svg></button>
+          <button class="ib big" id="pPlay" aria-label="Плей или пауза"><svg class="ic"><use id="pPlayIco" href="#i-play"/></svg></button>
+          <button class="ib" id="pF10" aria-label="Вперёд 10 секунд"><svg class="ic"><use href="#i-f10"/></svg></button>
+          <div class="sp"></div>
+          <button class="ib" id="pMute" aria-label="Звук видео"><svg class="ic"><use id="pMuteIco" href="#i-spk"/></svg></button>
+          <button class="ib" id="pPip" aria-label="Картинка в картинке" hidden><svg class="ic"><use href="#i-pip"/></svg></button>
+          <button class="ib" id="pFull" aria-label="Во весь экран"><svg class="ic"><use href="#i-expand"/></svg></button>
+        </div>
+        <div class="extnote" id="extNote"><svg class="ic"><use href="#i-info"/></svg><span>Встроенный плеер площадки: время и перемотка внутри него. Картинка, звук и избранное работают отсюда.</span></div>
+      </div>
+    </div>
+    <div class="deck" id="deck">
+      <div class="deck-h"><svg class="ic"><use href="#i-gear"/></svg>Пульт<span class="sp"></span><span id="deckMode">—</span></div>
+      <div class="dgrid">
+        <div class="dtile" id="tSpeed"><label><svg class="ic"><use href="#i-speed"/></svg>Скорость<b id="vSpeed">1.00×</b></label><input type="range" id="rSpeed" min="0.25" max="2" step="0.05" value="1"></div>
+        <div class="dtile" id="tVol"><label><svg class="ic"><use href="#i-spk"/></svg>Громкость<b id="vVol">100%</b></label><input type="range" id="rVol" min="0" max="1" step="0.01" value="1"></div>
+        <div class="dtile" id="tQual"><label><svg class="ic"><use href="#i-film"/></svg>Качество<span class="na" id="naQual"></span></label><select class="sel" id="selQual"><option value="-1">Авто</option></select></div>
+        <div class="dtile" id="tCap"><label><svg class="ic"><use href="#i-wifi"/></svg>Лимит трафика</label><select class="sel" id="selCap"><option value="0">Без лимита</option><option value="360">≤360p</option><option value="480">≤480p</option><option value="720">≤720p</option></select></div>
+        <div class="dtile"><label><svg class="ic"><use href="#i-sun"/></svg>Яркость<b id="vBri">100%</b></label><input type="range" id="rBri" min="0.4" max="1.8" step="0.02" value="1"></div>
+        <div class="dtile"><label><svg class="ic"><use href="#i-contrast"/></svg>Контраст<b id="vCon">100%</b></label><input type="range" id="rCon" min="0.5" max="1.8" step="0.02" value="1"></div>
+        <div class="dtile"><label><svg class="ic"><use href="#i-drop"/></svg>Насыщенность<b id="vSat">100%</b></label><input type="range" id="rSat" min="0" max="2.2" step="0.02" value="1"></div>
+        <div class="dtile"><label><svg class="ic"><use href="#i-crop"/></svg>Кадр</label><select class="sel" id="selFit"><option value="contain">Вписать</option><option value="cover">Заполнить</option><option value="fill">Растянуть</option></select></div>
+        <div class="dtile" id="tSub"><label><svg class="ic"><use href="#i-cc"/></svg>Субтитры<span class="na" id="naSub"></span></label><select class="sel" id="selSub"><option value="-1">Выключены</option></select></div>
+        <div class="dtile"><label><svg class="ic"><use href="#i-sun"/></svg>Тёплый свет</label><div class="tgl"><span>ночной фильтр</span><label class="sw"><input type="checkbox" id="swWarm"><i></i></label></div></div>
+        <div class="dtile"><label><svg class="ic"><use href="#i-loop"/></svg>Повтор всего</label><div class="tgl"><span>зациклить</span><label class="sw"><input type="checkbox" id="swLoop"><i></i></label></div></div>
+        <div class="dtile" id="tAB"><label><svg class="ic"><use href="#i-ab"/></svg>Отрезок A—B<b id="vAB">выкл</b></label><div class="abbtns"><button id="abA">A</button><button id="abB">B</button><button id="abX">×</button></div></div>
+      </div>
+      <div class="dactions">
+        <button class="btn btn-gh btn-sm" id="btnResetPic"><svg class="ic"><use href="#i-refresh"/></svg>Сброс картинки</button>
+        <button class="btn btn-gh btn-sm" id="btnShot"><svg class="ic"><use href="#i-cam"/></svg>Кадр в PNG</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="swrap" id="swrap"><div class="sbd" id="sbd"></div><div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="shd" id="shd"><i></i></div><div class="scnt" id="scnt"></div></div></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<noscript><div class="noscript">Для работы приложения нужен включённый JavaScript.</div></noscript>
+<script src="app.js" defer></script>
+</body>
+</html>
